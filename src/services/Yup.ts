@@ -1,18 +1,11 @@
-// import * as Yup from "yup";
+import { object, string, number, date, InferType } from 'yup';
 
-// Yup.setLocale({
-//   mixed: {
-//     required: "Bu alanın doldurulması zorunludur.",
-//   },
-//   string: {
-//     email: "Geçerli bir e-posta adresi girmelisiniz.",
-//     min: "Bu alan minimum ${min} karakter olmalıdır.",
-//     max: "Bu alan maksimum ${max} karakter olmalıdır.",
-//     url: "Geçerli bir URL girmelisiniz.",
-//   },
-//   boolean: {
-//     isValue: "Bu alanın doldurulması zorunludur.",
-//   },
-// });
+let userSchema = object({
+    email: string().email('Invalid email').required('Email is required'),
+    name: string().required('Name is required'),
+    number: number().required('Number is required'),
+    password: string().required('Password is required'),
+  });
+// const user = await userSchema.validate(await fetchUser());
 
-// export default Yup;
+type User = InferType<typeof userSchema>;

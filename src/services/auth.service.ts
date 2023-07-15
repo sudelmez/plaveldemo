@@ -1,4 +1,4 @@
-// import Yup from "services/Yup";
+// import Yup from "/Users/sudeolmez/Desktop/plaveldemo/src/services/Yup";
 // const registerValidationSchema = Yup.object().shape({
 //     username: Yup.string().min(4).required(),
 //     name: Yup.string().min(3).required(),

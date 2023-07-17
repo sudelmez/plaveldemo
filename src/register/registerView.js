@@ -1,9 +1,10 @@
 import { View } from 'react-native';
-import { Center, Box, Heading, VStack } from 'native-base';
-import CustomField from '/Users/sudeolmez/Desktop/plaveldemo/src/component/textfield/textfield.js';
+import { Center, Box, VStack } from 'native-base';
+import Textfield2 from '/Users/sudeolmez/Desktop/plaveldemo/src/component/textfield/textfield.js';
 import CustomButton from '/Users/sudeolmez/Desktop/plaveldemo/src/component/button/button.js';
 import { Formik } from 'formik';
 import { userSchema } from "/Users/sudeolmez/Desktop/plaveldemo/src/services/Yup.ts"
+import RegisterText from "/Users/sudeolmez/Desktop/plaveldemo/src/component/text/registertext.js"
 
 const RegisterPage = () => {
     return (
@@ -17,9 +18,7 @@ const Code = () => {
     return (
         <Center w="100%">
             <Box safeArea p="2" w="90%" py="20">
-                <Heading size="lg" color="coolGray.800" _dark={{ color: "warmGray.50" }} fontWeight="semibold">
-                    Register
-                </Heading>
+                <RegisterText/>
                 <Formik
                     validationSchema={userSchema}
                     initialValues={{
@@ -61,7 +60,7 @@ const Code = () => {
                         isSubmitting,
                     }) => (
                         <VStack space={5} mt="5">
-                            <CustomField
+                            <Textfield2
                                 hint="Enter your email"
                                 type="email"
                                 handleChange={handleChange}
@@ -71,7 +70,7 @@ const Code = () => {
                             {errors.email && touched.email && (
                                 <Text>{errors.email}</Text>
                             )}
-                            <CustomField
+                            <Textfield2
                                 hint="Enter your name and surname"
                                 type="name"
                                 handleChange={handleChange}
@@ -80,7 +79,7 @@ const Code = () => {
                             />{errors.name && touched.name && (
                                 <Text>{errors.name}</Text>
                             )}
-                            <CustomField
+                            <Textfield2
                                 hint="Enter your phone number"
                                 type="number"
                                 handleChange={handleChange}
@@ -89,7 +88,7 @@ const Code = () => {
                             />{errors.number && touched.number && (
                                 <Text>{errors.number}</Text>
                             )}
-                            <CustomField
+                            <Textfield2
                                 hint="Enter your password"
                                 type="password"
                                 handleChange={handleChange}
@@ -98,7 +97,7 @@ const Code = () => {
                             />{errors.password && touched.password && (
                                 <Text>{errors.password}</Text>
                             )}
-                            <CustomField
+                            <Textfield2
                                 hint="Enter your password again"
                                 type="password"
                                 handleChange={handleChange}

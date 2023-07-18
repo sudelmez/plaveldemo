@@ -1,12 +1,9 @@
-import { object, string, number, InferType } from 'yup';
-import * as Yup from 'yup';
+import * as yup from 'yup';
 
-let userSchema = object({
-    email: Yup.string().email('Invalid email').required('Email is required'),
-    name: Yup.string().required('Name is required'),
-    number: Yup.number().required('Number is required'),
-    password: Yup.string().required('Password is required'),
-  });
-// const user = await userSchema.validate(await fetchUser());
-
-type User = InferType<typeof userSchema>;
+const registerValidationSchema = yup.object({
+  name: yup.string().required('required'),
+  email: yup.string().email('Please enter an email').required('required'),
+  number: yup.string().required('required'), 
+  password: yup.string().required('required'),
+  passwordagain: yup.string().required('required'),
+});

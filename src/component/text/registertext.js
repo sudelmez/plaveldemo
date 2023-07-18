@@ -1,5 +1,5 @@
 import React from "react";
-import { Text} from "react-native";
+// import { Text} from "react-native";
 import {Heading } from 'native-base';
 
 function RegisterText() {
@@ -11,11 +11,11 @@ function RegisterText() {
 }
 
 export default RegisterText;
-const RegisterText2 = () => {
-    return (
-        <Text>
-            User App
-        </Text>
-    );
-}
+// const RegisterText2 = () => {
+//     return (
+//         <Text>
+//             User App
+//         </Text>
+//     );
+// }
 

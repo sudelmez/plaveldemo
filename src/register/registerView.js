@@ -3,9 +3,8 @@ import { Center, Box, VStack } from 'native-base';
 import Textfield2 from '/Users/sudeolmez/Desktop/plaveldemo/src/component/textfield/textfield.js';
 import CustomButton2 from '/Users/sudeolmez/Desktop/plaveldemo/src/component/button/button.js';
 import { Formik } from 'formik';
-import { userSchema } from "/Users/sudeolmez/Desktop/plaveldemo/src/services/Yup.ts"
 import RegisterText from "/Users/sudeolmez/Desktop/plaveldemo/src/component/text/registertext.js"
-
+import registerValidationSchema from "/Users/sudeolmez/Desktop/plaveldemo/src/services/Yup.js";
 const RegisterPage = () => {
     return (
         <View>
@@ -20,7 +19,8 @@ const Code = () => {
             <Box safeArea p="2" w="90%" py="20">
                 <RegisterText />
                 <Formik
-                    validationSchema={userSchema}
+                    validateOnMount={true}
+                    validationSchema={registerValidationSchema}
                     initialValues={{
                         email: "",
                         name: "",
@@ -29,22 +29,22 @@ const Code = () => {
                         term_of_use: false,
                         privacy_policy: false,
                     }}
-                    validate={values => {
-                        const errors = {};
-                        if (!values.email) {
-                            errors.email = 'Required';
-                        } 
-                        if (!values.name) {
-                            errors.name = 'Required';
-                        } 
-                        if (!values.number) {
-                            errors.number = 'Required';
-                        } 
-                        if (!values.password) {
-                            errors.password = 'Required';
-                        } 
-                        return errors;
-                    }}
+                    // validate={values => {
+                    //     const errors = {};
+                    //     if (!values.email) {
+                    //         errors.email = 'Required';
+                    //     } 
+                    //     if (!values.name) {
+                    //         errors.name = 'Required';
+                    //     } 
+                    //     if (!values.number) {
+                    //         errors.number = 'Required';
+                    //     } 
+                    //     if (!values.password) {
+                    //         errors.password = 'Required';
+                    //     } 
+                    //     return errors;
+                    // }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(() => {
                             alert(JSON.stringify(values, null, 2));

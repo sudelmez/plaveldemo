@@ -29,6 +29,7 @@ class Textfield2 extends Component {
   }
 }
 
+
 Textfield2.propTypes = {
   hint: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

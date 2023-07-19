@@ -1,10 +1,12 @@
-import { View , Text} from 'react-native';
-import { Center, Box, VStack } from 'native-base';
-import Textfield2 from '/Users/sudeolmez/Desktop/plaveldemo/src/component/textfield/textfield.js';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Center, Box, VStack, HStack } from 'native-base';
 import CustomButton2 from '/Users/sudeolmez/Desktop/plaveldemo/src/component/button/button.js';
 import { Formik } from 'formik';
 import { userSchema } from "/Users/sudeolmez/Desktop/plaveldemo/src/services/Yup.ts"
 import RegisterText from "/Users/sudeolmez/Desktop/plaveldemo/src/component/text/registertext.js"
+import RegistrationFields from "/Users/sudeolmez/Desktop/plaveldemo/src/register/textfieldwidgets.js";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const RegisterPage = () => {
     return (
@@ -14,11 +16,16 @@ const RegisterPage = () => {
     );
 }
 
-const Code = () => {
+const Code = ({ navigation }) => {
+    const handleForgotPassword = () => {
+        // Handle the "Forgot Password" action here
+        // For example, navigate to a password reset screen
+    };
+
     return (
         <Center w="100%">
             <Box safeArea p="2" w="90%" py="20">
-                <RegisterText />
+                <RegisterText text="Register" />
                 <Formik
                     validationSchema={userSchema}
                     initialValues={{
@@ -33,16 +40,16 @@ const Code = () => {
                         const errors = {};
                         if (!values.email) {
                             errors.email = 'Required';
-                        } 
+                        }
                         if (!values.name) {
                             errors.name = 'Required';
-                        } 
+                        }
                         if (!values.number) {
                             errors.number = 'Required';
-                        } 
+                        }
                         if (!values.password) {
                             errors.password = 'Required';
-                        } 
+                        }
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
@@ -62,58 +69,23 @@ const Code = () => {
                         isSubmitting,
                     }) => (
                         <VStack space={5} mt="5">
-                            <Textfield2
-                                hint="Enter your email"
-                                type="email"
+                            <RegistrationFields
+                                values={values}
+                                errors={errors}
+                                touched={touched}
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}
-                                value={values.email}
                             />
-                            {errors.email && touched.email && (
-                                <Text>{errors.email}</Text>
-                            )}
-                            <Textfield2
-                                hint="Enter your name and surname"
-                                type="name"
-                                handleChange={handleChange}
-                                handleBlur={handleBlur}
-                                value={values.name}
-                            />{errors.name && touched.name && (
-                                <Text>{errors.name}</Text>
-                            )}
-                            <Textfield2
-                                hint="Enter your phone number"
-                                type="number"
-                                handleChange={handleChange}
-                                handleBlur={handleBlur}
-                                value={values.number}
-                            />{errors.number && touched.number && (
-                                <Text>{errors.number}</Text>
-                            )}
-                            <Textfield2
-                                hint="Enter your password"
-                                type="password"
-                                handleChange={handleChange}
-                                handleBlur={handleBlur}
-                                value={values.password}
-                            />{errors.password && touched.password && (
-                                <Text>{errors.password}</Text>
-                            )}
-                            <Textfield2
-                                hint="Enter your password again"
-                                type="password"
-                                handleChange={handleChange}
-                                handleBlur={handleBlur}
-                                value={values.password}
-                            />
-                            {errors.password && touched.password && (
-                                <Text>{errors.password}</Text>
-                            )}
-                            <CustomButton2
-                                onPress={handleSubmit}
-                                disabled={isSubmitting}
-                                type="submit"
-                            />
+                            <HStack justifyContent="space-between" alignItems="center">
+                                <CustomButton2
+                                    onPress={handleSubmit}
+                                    disabled={isSubmitting}
+                                    type="submit"
+                                />
+                                <TouchableOpacity onPress={handleForgotPassword}>
+                                    <Text style={{ textDecorationLine: 'underline' }}>Forgot Password</Text>
+                                </TouchableOpacity>
+                            </HStack>
                         </VStack>
                     )}
                 </Formik>

@@ -40,12 +40,12 @@ const RegistrationFields = ({ values, errors, touched, handleChange, handleBlur 
             {errors.password && touched.password && <Text>{errors.password}</Text>}
             <Textfield2
                 hint="Enter your password again"
-                type="password"
+                type="passwordagain"
                 handleChange={handleChange}
                 handleBlur={handleBlur}
-                value={values.password}
+                value={values.passwordagain}
             />
-            {errors.password && touched.password && <Text>{errors.password}</Text>}
+            {errors.passwordagain && touched.passwordagain && <Text>{errors.passwordagain}</Text>}
         </VStack>
     );
 };

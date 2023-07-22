@@ -22,7 +22,7 @@ class Textfield2 extends Component {
           type={type}
           placeholder={hint}
           value={value}
-          onBlur={handleBlur}
+          onBlur={handleBlur(type)}
         />
       </FormControl>
     );

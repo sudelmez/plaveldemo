@@ -30,6 +30,7 @@ const Code = () => {
                 name: values.name,
                 number: values.number,
                 password: values.password,
+                passwordagain: values.passwordagain,
                 userId: 1,
             };
 
@@ -57,6 +58,7 @@ const Code = () => {
                         name: "",
                         number: "",
                         password: "",
+                        passwordagain: "",
                         term_of_use: false,
                         privacy_policy: false,
                     }}
@@ -73,6 +75,12 @@ const Code = () => {
                         }
                         if (!values.password) {
                             errors.password = 'Required';
+                        }
+                        if (!values.passwordagain) {
+                            errors.passwordagain = 'Required';
+                        }
+                        if (values.passwordagain!=values.password) {
+                            errors.passwordagain = 'Passwords should be same';
                         }
                         return errors;
                     }}
@@ -101,16 +109,16 @@ const Code = () => {
                                 handleChange={handleChange}
                                 handleBlur={handleBlur}
                             />
-                            <HStack justifyContent="space-between" alignItems="center">
-                                <CustomButton2
-                                    onPress={handleSubmit}
-                                    disabled={isSubmitting}
-                                    type="submit"
-                                />
-                                <TouchableOpacity>
+                            {/* <HStack justifyContent="space-between" alignItems="center"> */}
+                            <CustomButton2
+                                onPress={handleSubmit}
+                                disabled={isSubmitting}
+                                type="submit"
+                            />
+                            {/* <TouchableOpacity>
                                     <Text style={{ textDecorationLine: 'underline' }}>Forgot Password</Text>
-                                </TouchableOpacity>
-                            </HStack>
+                                </TouchableOpacity> */}
+                            {/* </HStack> */}
                         </VStack>
                     )}
                 </Formik>

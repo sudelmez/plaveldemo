@@ -7,6 +7,9 @@ import RegisterText from "/Users/sudeolmez/Desktop/plaveldemo/src/component/text
 import RegistrationFields from "/Users/sudeolmez/Desktop/plaveldemo/src/register/textfieldwidgets.js";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import React, { useState } from 'react';
+import axios from 'axios';
+
 
 const RegisterPage = () => {
     return (
@@ -21,6 +24,31 @@ const Code = ({ navigation }) => {
         // Handle the "Forgot Password" action here
         // For example, navigate to a password reset screen
     };
+
+    const [responseData, setResponseData] = useState(null);
+
+  const sendData = async (values) => {
+    try {
+      const dataToSend = {
+        email: values.email,
+        name: values.name,
+        number: values.number,
+        password: values.password,
+        userId: 1,
+      };
+
+      const response = await axios.post(
+        'https://jsonplaceholder.typicode.com/posts',
+        dataToSend
+      );
+
+      setResponseData(response.data);
+      console.log('Response:', response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
 
     return (
         <Center w="100%">
@@ -53,11 +81,12 @@ const Code = ({ navigation }) => {
                         return errors;
                     }}
                     onSubmit={(values, { setSubmitting }) => {
+                        sendData(values); // Call sendData function to send the data
                         setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                            setSubmitting(false);
+                          alert(JSON.stringify(values, null, 2));
+                          setSubmitting(false);
                         }, 400);
-                    }}
+                      }}
                 >
                     {({
                         values,

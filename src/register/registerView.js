@@ -1,5 +1,5 @@
 import { View} from 'react-native';
-import { Center, Box, VStack, HStack } from 'native-base';
+import { Center, Box, VStack} from 'native-base';
 import CustomButton2 from '/Users/sudeolmez/Desktop/plaveldemo/src/component/button/button.js';
 import { Formik } from 'formik';
 import { userSchema } from "/Users/sudeolmez/Desktop/plaveldemo/src/services/Yup.ts"
@@ -8,6 +8,7 @@ import RegistrationFields from "/Users/sudeolmez/Desktop/plaveldemo/src/register
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { sendData } from '/Users/sudeolmez/Desktop/plaveldemo/src/services/api.js';
+import { validate } from '../services/registervalidation';
 
 const RegisterPage = () => {
     return (
@@ -36,28 +37,7 @@ const Code = () => {
                         term_of_use: false,
                         privacy_policy: false,
                     }}
-                    validate={values => {
-                        const errors = {};
-                        if (!values.email) {
-                            errors.email = 'Required';
-                        }
-                        if (!values.name) {
-                            errors.name = 'Required';
-                        }
-                        if (!values.number) {
-                            errors.number = 'Required';
-                        }
-                        if (!values.password) {
-                            errors.password = 'Required';
-                        }
-                        if (!values.passwordagain) {
-                            errors.passwordagain = 'Required';
-                        }
-                        if (values.passwordagain != values.password) {
-                            errors.passwordagain = 'Passwords should be same';
-                        }
-                        return errors;
-                    }}
+                    validate={validate}
                     onSubmit={async (values, { setSubmitting }) => {
                         try {
                             const response = await sendData(values);
@@ -91,6 +71,7 @@ const Code = () => {
                                 onPress={handleSubmit}
                                 disabled={isSubmitting}
                                 type="submit"
+                                title= "Register Now!"
                             />
                         </VStack>
                     )}
